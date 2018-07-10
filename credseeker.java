@@ -1,6 +1,7 @@
 // involves 3 ways to get the credentials using JSoup
 
 package com.company;
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -24,18 +25,14 @@ public class Main {
         String inputname = "";
         String phonenumber = JOptionPane.showInputDialog("Enter phone number in following format: 5554443322");
 
-        if(phonenumber.length() != 10 || phonenumber.equals(null))
-        {
+        if (phonenumber.length() != 10 || phonenumber.equals(null)) {
             JOptionPane.showMessageDialog(null, "Invalid input, try again");
-        }
-        else
-        {
-            for(int i=0; i<namelength; i++)
+        } else {
+            for (int i = 0; i < namelength; i++)
                 inputname += (char) (97 + rand.nextInt(25));
             // input name ready
 
-            try
-            {
+            try {
 
                 System.out.println(inputname);
                 System.out.println(phonenumber);
@@ -49,15 +46,13 @@ public class Main {
                         .post();
 
                 // if everything went fine, the document should have this text somewhere on the page
-                if(doc.html().contains("You will get"))
-                {
+                if (doc.html().contains("You will get")) {
                     JOptionPane.showMessageDialog(null, "You will get an SMS including the login info.");
-                }
-                else // if the text doesn't appear, there's an error
+                } else {
+                    // if the text doesn't appear, there's an error
                     JOptionPane.showMessageDialog(null, "Action couldn't be completed. Check internet connection" +
                             " and provided phone number.");
-
-
+                }
                 /*
                 Connection.Response res = Jsoup.connect(url)
                         .data("guestname", inputname)
@@ -86,16 +81,10 @@ public class Main {
                 submit.attr("value", "Submit");
                 */
 
-                //System.out.println(doc.title());
-                //System.out.println(doc.html());
-            }
-            catch(IOException ex)
-            {
+            } catch (IOException ex) {
                 ex.printStackTrace();
                 System.out.println("IO problem.");
             }
-
-
         }
 
     }
